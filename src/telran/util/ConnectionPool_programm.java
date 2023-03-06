@@ -1,10 +1,11 @@
+package telran.util;
 import java.util.*;
 
 public class ConnectionPool_programm implements ConnectionsPool {
 	LinkedList<Object> pool = new LinkedList<Object>();
 	HashMap<Integer, Object> connections = new HashMap<Integer, Object>();
 
-	private int sizeOfPool=3;
+	private int sizeOfPool;
 
 	@Override
 	public boolean addConnection(Connection connection) {
@@ -15,7 +16,7 @@ public class ConnectionPool_programm implements ConnectionsPool {
 			connections.put(id, connection);
 			res = true;
 		}
-		if (pool.size() > sizeOfPool) {
+		if (pool.size() < sizeOfPool) {
 			removeOldestConnectionInPool();
 //			pool.removeLast();
 //			Object removedID = pool.removeLast();
